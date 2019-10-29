@@ -3,7 +3,7 @@
 
 # Linux Observability with BPF code examples
 
-This is the companion code repo for the book [Linux Observability with BPF](http://shop.oreilly.com/product/0636920242581.do).
+This is the companion code repo for the book [Linux Observability with BPF](https://bit.ly/bpf-safari).
 
 We believe that even if the examples included in the book were all tested and working when we wrote them, human error is possible and technology changes.
 For that reason, the purpose of this repo is to keep them as updated as possible and correct mistakes we made while writing the book.
