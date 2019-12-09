@@ -47,14 +47,21 @@ wget -c https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.0.9.tar.gz -O - | t
 sudo mv linux-5.0.9 /kernel-src
 ```
 
-Please note: we could've done this in the Vagrant machine
+At this point, we need to compile the `libbpf` library:
 
-Now that you are in the machine, you can `cd` into the `/vagrant` folder, you'll find this
+```
+cd /kernel-src/tools/lib/bpf
+make
+```
+
+Now that you are in the machine and have everything, you can `cd` into the `/vagrant` folder, you'll find this
 repository in that folder since it's **one-time synced** between the VM and your Computer.
 
 ```
 cd /vagrant
 ```
+
+
 
 Now, you can follow the following code examples.
 
