@@ -8,9 +8,10 @@ This is the companion code repo for the book [Linux Observability with BPF](http
 We believe that even if the examples included in the book were all tested and working when we wrote them, human error is possible and technology changes.
 For that reason, the purpose of this repo is to keep them as updated as possible and correct mistakes we made while writing the book.
 
-
 **Nota Bene**: All the examples in this repository are adapted from the book to assume that you use the Vagrant environment we provide.
 Examples can be slightly different in this repository because of that. The reason is that we didn't want to couple the book itself to Vagrant as a tool.
+If you don't want a Vagrant based environment, make sure you have: [bcc](https://github.com/iovisor/bcc/blob/master/INSTALL.md) and [clang](https://clang.llvm.org/)
+
 
 ## Vagrant Environment setup
 
@@ -29,25 +30,38 @@ cd linux-observability-with-bpf
 vagrant up
 ```
 
-This Vagrant command, will start an Ubuntu VM in Virtualbox, you can SSH into the machine using:
+This Vagrant command, will start a Fedora 30 VM in Virtualbox, you can SSH into the machine using:
 
 ```
 vagrant ssh
 ```
 
+Before going on, make sure you download the kernel source tree in this repository. It is needed as a dependency for some examples.
+We will be downloading the code for Kernel 5.0.9 - We are avoiding a git clone here because the Git history of the kernel is very big.
+
+In the machine:
+
+```bash
+cd /tmp
+wget -c https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.0.9.tar.gz -O - | tar -xz
+sudo mv linux-5.0.9 /kernel-src
+```
+
+Please note: we could've done this in the Vagrant machine
+
 Now that you are in the machine, you can `cd` into the `/vagrant` folder, you'll find this
-repository in that folder since it's shared between the VM and your Computer.
+repository in that folder since it's **one-time synced** between the VM and your Computer.
 
 ```
 cd /vagrant
 ```
 
-Now, you can 
-
+Now, you can follow the following code examples.
 
 ## Code examples
 
-Click on each example to follow the setup instructions:
+Click on each example to follow the setup instructions.
+
 
 ### Chapter 2
 

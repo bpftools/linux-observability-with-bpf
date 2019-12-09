@@ -1,6 +1,5 @@
 #include "bpf_load.h"
 #include <stdio.h>
-#include <uapi/linux/bpf.h>
 
 int main(int argc, char **argv) {
   if (load_bpf_file("hello_world_kern.o") != 0) {
