@@ -28,8 +28,8 @@ For that reason, the purpose of this repo is to keep them as updated as possible
 - [Kretprobes](/code/chapter-4/kretprobes)
 
 ##### User-Space Probes
-- [Probes > User-Space Probes > Uprobes](/code/chapter-4/uprobes)
-- [Probes > User-Space Probes > Uretprobes ](/code/chapter-4/uretprobes)
+- [Uprobes](/code/chapter-4/uprobes)
+- [Uretprobes ](/code/chapter-4/uretprobes)
 
 ##### Tracepoints
 - [Tracepoints](/code/chapter-4/tracepoints)
