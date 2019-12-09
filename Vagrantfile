@@ -4,7 +4,7 @@
 VAGRANTFILE_API_VERSION = "2"
 
 $bootstrap=<<SCRIPT
-dnf install make glibc-devel.i686 elfutils-libelf-devel wget tar clang bcc -y
+dnf install make glibc-devel.i686 elfutils-libelf-devel wget tar clang bcc strace -y
 SCRIPT
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
