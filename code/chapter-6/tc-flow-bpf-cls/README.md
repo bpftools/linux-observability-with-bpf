@@ -24,10 +24,10 @@ Now, since this example is using Traffic Control as a loader, we don't need to b
 ourselves but we just use the `load.sh` script that uses `tc` to load the program on an interface
 passed as first argument.
 
-You can use it like this on the loopback (`lo`), or any other interface (`eth0`, etc..):
+You can use it like this on the loopback (`eth0`), or any other interface (`lo`, `eth1` etc..):
 
 ```bash
-./load.sh lo
+sudo ./load.sh eth0
 ```
 
 Since the program `classifier.c` writes with `bpf_trace_printk` it will dump the output to `/sys/kernel/debug/tracing/trace_pipe`.
@@ -37,19 +37,19 @@ The classifier is written in a way that everytime an HTTP packet goes trough tha
 If you now do an http request to any HTTP server, e.g
 
 ```bash
-curl https://bpf.sh
+curl http://bpf.sh
 ```
 
 It will show:
 
 ```
-[root@bpfbook ~]# cat /sys/kernel/debug/tracing/trace_pipe
-          <idle>-0     [000] ..s. 29775.178865: 0: Yes! It is HTTP!
+[vagrant@bpfbook tc-flow-bpf-cls]$ sudo cat /sys/kernel/debug/tracing/trace_pipe
+          <idle>-0     [000] ..s. 30096.619165: 0: Yes! It is HTTP!
 ```
 
 
 At this point, you will want to unload the program, to do so:
 
 ```bash
-./unload.sh lo
+sudo ./unload.sh eth0
 ```
