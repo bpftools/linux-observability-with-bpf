@@ -11,6 +11,37 @@ For that reason, the purpose of this repo is to keep them as updated as possible
 
 ## Code examples
 
+### Chapter 2
+
+- [Hello World](/code/chapter-2/hello_world)
+
+### Chapter 3
+
+- [The BPF Virtual Filesystem](/code/chapter-3/bpf_fs)
+
+### Chapter 4
+
+#### Probes
+
+##### Kernel Probes
+- [Kprobes](/code/chapter-4/kprobes)
+- [Kretprobes](/code/chapter-4/kretprobes)
+
+##### User-Space Probes
+- [Probes > User-Space Probes > Uprobes](/code/chapter-4/uprobes)
+- [Probes > User-Space Probes > Uretprobes ](/code/chapter-4/uretprobes)
+
+##### Tracepoints
+- [Tracepoints](/code/chapter-4/tracepoints)
+
+#### User Statically Defined Tracepoints (USDT)
+- [User Statically Defined Tracepoints](/code/chapter-4/usdt)
+
+##### Visualizing Tracing Data
+- [Flame Graphs](/code/chapter-4/flamegraphs)
+- [Histograms](/code/chapter-4/histograms)
+- [Perf Events](/code/chapter-4/histograms)
+
 ### Chapter 6 - Linux Networking and BPF
 
 - [Packet filtering for raw sockets](/code/chapter-6/packet-filtering-raw-sockets)
