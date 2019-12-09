@@ -9,7 +9,45 @@ We believe that even if the examples included in the book were all tested and wo
 For that reason, the purpose of this repo is to keep them as updated as possible and correct mistakes we made while writing the book.
 
 
+**Nota Bene**: All the examples in this repository are adapted from the book to assume that you use the Vagrant environment we provide.
+Examples can be slightly different in this repository because of that. The reason is that we didn't want to couple the book itself to Vagrant as a tool.
+
+## Vagrant Environment setup
+
+We provide reproducible environment in the form of a Vagrantfile that installs all the needed to make the exampples work.
+tools.
+
+### Install Vagrant
+
+To install Vagrant, follow the official guide [here](https://www.vagrantup.com/docs/installation/).
+
+Once you have Vagrant installed, you will need to clone this repository and issue a `vagrant up`.
+
+```bash
+git clone https://github.com/bpftools/linux-observability-with-bpf.git
+cd linux-observability-with-bpf
+vagrant up
+```
+
+This Vagrant command, will start an Ubuntu VM in Virtualbox, you can SSH into the machine using:
+
+```
+vagrant ssh
+```
+
+Now that you are in the machine, you can `cd` into the `/vagrant` folder, you'll find this
+repository in that folder since it's shared between the VM and your Computer.
+
+```
+cd /vagrant
+```
+
+Now, you can 
+
+
 ## Code examples
+
+Click on each example to follow the setup instructions:
 
 ### Chapter 2
 
