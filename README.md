@@ -108,8 +108,8 @@ Click on each example to follow the setup instructions.
 
 ### Chapter 7 - eXpress Data Path (XDP)
 
-- [XDP using iproute2 as a loader](/code/chapter-7/iproute2)
-- [XDP using BCC as a loader](/code/chapter-7/bcc)
+- [XDP and iproute2 as a loader](/code/chapter-7/iproute2)
+- [XDP and BCC](/code/chapter-7/bcc)
 - [Testing XDP programs](/code/chapter-7/prog-test-run)
 
 
