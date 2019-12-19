@@ -51,7 +51,7 @@ At this point, we need to compile the `libbpf` library:
 
 ```
 cd /kernel-src/tools/lib/bpf
-make
+make && make install
 ```
 
 Now that you are in the machine and have everything, you can `cd` into the `/vagrant` folder, you'll find this
