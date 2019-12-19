@@ -1,4 +1,4 @@
 #!/bin/bash
 clang -O2 -target bpf \
   -c bpf_program.c \
-  -o bpf_program.o
+  -o hello_world_kern.o
