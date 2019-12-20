@@ -15,7 +15,7 @@ LOADINCLUDE += -I/kernel-src/samples/bpf
 LOADINCLUDE += -I/kernel-src/tools/lib
 LOADINCLUDE += -I/kernel-src/tools/perf
 LOADINCLUDE += -I/kernel-src/tools/include
-LIBRARY_PATH = -L/urs/local/lib64/
+LIBRARY_PATH = -L/usr/local/lib64
 BPFSO = -lbpf
 
 .PHONY: clean $(CLANG) bpfload build
