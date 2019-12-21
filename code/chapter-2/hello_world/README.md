@@ -20,7 +20,7 @@ cd /vagrant/code/chapter-2/hello_world
 Compile the program and the loader
 
 ```bash
-make build
+make bpfload
 ```
 
 It will create a BPF ELF named `bpf-program.o` and a Loader named `monitor-exec`.
