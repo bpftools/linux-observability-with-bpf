@@ -1,6 +1,8 @@
 from bcc import BPF
 
 bpf_source = """
+#include <uapi/linux/ptrace.h>
+
 int ret_sys_execve(struct pt_regs *ctx) {
   int return_value;
   char comm[16];
