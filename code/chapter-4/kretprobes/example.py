@@ -14,7 +14,7 @@ int ret_sys_execve(struct pt_regs *ctx) {
 }
 """
 
-bpf = BPF(text = bpf_source)
+bpf = BPF(text=bpf_source)
 execve_function = bpf.get_syscall_fnname("execve")
-bpf.attach_kretprobe(event = execve_function, fn_name = "ret_sys_execve")
+bpf.attach_kretprobe(event=execve_function, fn_name="ret_sys_execve")
 bpf.trace_print()
