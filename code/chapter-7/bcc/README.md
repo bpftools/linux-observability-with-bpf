@@ -1,15 +1,16 @@
 # Chapter 7: XDP and BCC
 
-A full description of this example can be found in Chapter 7.
+- A full description of this example can be found in Chapter 7.
+- Please remember that the examples here are tested in the Vagrant machine. Please read more in [README.md](/README.md).
+- Make sure to change the example accordingly if you wish to build somewhere else, open an issue if you have problems doing so!
+- All the dependencies are already handled if you followed the instructions in the main [README.md](/README.md).
 
-Before reading this, make sure you follow the instructions to create the  Vagrant machine so all the dependencies are already handled, see the main [README.md](/README.md).
-
-In the vagrant machine:
+In the machine:
 
 Enter into this example folder:
 
 ```bash
-cd /vagrant/code/chapter-7/bcc
+cd ~/linux-observability-with-bpf/code/chapter-7/bcc
 ```
 
 In this folder, we have two files: `loader.py` and `program.c`. The last one is the actual program that we are

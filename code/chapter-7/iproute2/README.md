@@ -1,15 +1,18 @@
 # Chapter 7: XDP and iproute2 as a loader
 
-A full description of this example can be found in Chapter 7. It contains shows how to use this program against a webserver and has a full explanation of the arguments used. Please refer to the book.
+- A full description of this example can be found in Chapter 7. It contains shows how to use this program against a webserver and has a full explanation of the arguments used. Please refer to the book.
+- Please remember that the examples here are tested in the Vagrant machine. Please read more in [README.md](/README.md).
+- Make sure to change the example accordingly if you wish to build somewhere else, open an issue if you have problems doing so!
+- All the dependencies are already handled if you followed the instructions in the main [README.md](/README.md).
 
-Before reading this, make sure you follow the instructions to create the  Vagrant machine so all the dependencies are already handled, see the main [README.md](/README.md).
+**VERY VERY VERY IMPORTANT NOTE ON LOCKING YOURSELF OUT OF THE MACHINE**: The code in this example basically filters all the TCP packets to a given network interface. If you are connected via SSH to this machine, make sure to use another interface or change the program accordingly. The Vagrant environment already does this if you need a quick win!
 
-In the vagrant machine:
+In the machine:
 
 Enter into this example folder:
 
 ```bash
-cd /vagrant/code/chapter-7/iproute2
+cd ~/linux-observability-with-bpf/code/chapter-7/iproute2
 ```
 
 You can now use the `compile.sh` script to create the `program.o` ELF file.
