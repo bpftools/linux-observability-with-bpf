@@ -66,6 +66,7 @@ sudo make && sudo make install prefix=/
 First, we need to install some build dependencies and all the tools needed for the examples:
 
 ```bash
+sudo apt update
 sudo apt install build-essential git make libelf-dev clang
 ```
 
@@ -81,7 +82,7 @@ git clone --depth 1 git://kernel.ubuntu.com/ubuntu/ubuntu-bionic.git
 
 Now that we have the kernel source, we can move it to the `/kernel-src` folder.
 
-**NOTE THAT: All the examples** using kernel sources in this repo assume that the kernel sources are available there. In case you don't like it,
+**NOTE THAT: All the examples** using kernel sources in this repo assume that the kernel sources are available at `/kernel-src`. In case you don't like it,
 make sure you do a search and replace!
 
 At this point we move the kernel sources and compile `libbpf`.
@@ -97,6 +98,13 @@ to its library path now.
 
 ```
 sudo mv /usr/local/lib64/libbpf.* /lib/x86_64-linux-gnu/
+```
+
+Ubuntu has the `asm/types.h` file in `asm-generic/types.h`. That file is needed by `libbpf`
+so to make some examples work we need to symlink it.
+
+```
+ln -s /usr/include/asm-generic /usr/include/asm
 ```
 
 </details>
