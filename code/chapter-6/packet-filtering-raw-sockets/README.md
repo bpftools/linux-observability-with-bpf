@@ -16,7 +16,7 @@ cd ~/linux-observability-with-bpf/code/chapter-6/packet-filtering-raw-sockets
 Compile the loader
 
 ```bash
-./build-loader.sh
+./build-loader.sh /kernel-src
 ```
 
 It will create a binary file named `loader-bin`
@@ -32,7 +32,7 @@ It will create a BPF ELF named `bpf-program.o`
 Execute the program using the loader:
 
 ```
-./loader-bin bpf_program.o 
+sudo ./loader-bin bpf_program.o 
 ```
 
 It will show something like this, ten results, one every second for ten seconds:
