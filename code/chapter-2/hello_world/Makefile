@@ -1,7 +1,5 @@
 CLANG = clang
 
-LINUXINCLUDE += -I
-
 EXECABLE = monitor-exec
 
 BPFCODE = bpf_program
