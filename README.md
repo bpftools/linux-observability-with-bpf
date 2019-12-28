@@ -67,9 +67,10 @@ First, we need to install some build dependencies and all the tools needed for t
 
 ```bash
 sudo apt update
-sudo apt install build-essential git make libelf-dev clang
+sudo apt install build-essential git make libelf-dev clang strace tar bpfcc-tools linux-headers-$(uname -r) gcc-multilib
 ```
 
+**Kernel version**: make sure to have a recent kernel to run the examples. Most 18.04 are shipped with kernel 4.15 that doesn't work for all the examples. Upgrading options are left to the reader, we've been successful on aws by installing the `linux-image-5.0.0-1019-aws` package.
 
 Then we need grab a copy of the source code of the current release.
 Since this assumes that you are running an updated Ubuntu 18.04 we can get the kernel
@@ -84,6 +85,7 @@ Now that we have the kernel source, we can move it to the `/kernel-src` folder.
 
 **NOTE THAT: All the examples** using kernel sources in this repo assume that the kernel sources are available at `/kernel-src`. In case you don't like it,
 make sure you do a search and replace!
+
 
 At this point we move the kernel sources and compile `libbpf`.
 
@@ -100,12 +102,12 @@ to its library path now.
 sudo mv /usr/local/lib64/libbpf.* /lib/x86_64-linux-gnu/
 ```
 
-Ubuntu has the `asm/types.h` file in `asm-generic/types.h`. That file is needed by `libbpf`
+<!-- Ubuntu has the `asm/types.h` file in `asm-generic/types.h`. That file is needed by `libbpf`
 so to make some examples work we need to symlink it.
 
 ```
 ln -s /usr/include/asm-generic /usr/include/asm
-```
+``` -->
 
 </details>
 
