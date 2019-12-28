@@ -15,13 +15,17 @@ If you don't want a Vagrant based environment, make sure you have: [bcc](https:/
 
 ## Environment setup
 
+- Please expand the details of the environment you want to work on.
+- Remember that the examples have been tested on the Vagrant based environment primarily.
+- Feel free to open an issue or a PR if you want to help in making this better for everyone!
+
 <details>
 <summary>Fedora 30</summary>
 
 First, we need to install some build dependencies and all the tools needed for the examples:
 
 ```bash
-dnf install make glibc-devel.i686 elfutils-libelf-devel wget tar clang bcc strace kernel-devel -y
+sudo dnf install make glibc-devel.i686 elfutils-libelf-devel wget tar clang bcc strace kernel-devel -y
 ```
 
 Then we need grab a copy of the source code of the current kernel.
@@ -51,7 +55,7 @@ At this point we move the kernel sources and compile `libbpf`. Again please noti
 ```
 sudo mv linux-5.0.9 /kernel-src
 cd /kernel-src/tools/lib/bpf
-make && make install prefix=/
+sudo make && sudo make install prefix=/
 ```
 
 </details>
@@ -62,7 +66,7 @@ make && make install prefix=/
 First, we need to install some build dependencies and all the tools needed for the examples:
 
 ```bash
-apt install build-essential git make libelf-dev clang
+sudo apt install build-essential git make libelf-dev clang
 ```
 
 
@@ -83,16 +87,16 @@ make sure you do a search and replace!
 At this point we move the kernel sources and compile `libbpf`.
 
 ```
-mv ubuntu-bionic /kernel-src
+sudo mv ubuntu-bionic /kernel-src
 cd /kernel-src/tools/lib/bpf
-make && make install prefix=/usr/local
+sudo make && sudo make install prefix=/usr/local
 ```
 
 Ubuntu doesn't have the library path that the makefile expects so we need to move our libraries
 to its library path now.
 
 ```
-mv /usr/local/lib64/libbpf.* /lib/x86_64-linux-gnu/
+sudo mv /usr/local/lib64/libbpf.* /lib/x86_64-linux-gnu/
 ```
 
 </details>
