@@ -101,13 +101,6 @@ to its library path now.
 sudo mv /usr/local/lib64/libbpf.* /lib/x86_64-linux-gnu/
 ```
 
-<!-- Ubuntu has the `asm/types.h` file in `asm-generic/types.h`. That file is needed by `libbpf`
-so to make some examples work we need to symlink it.
-
-```
-ln -s /usr/include/asm-generic /usr/include/asm
-``` -->
-
 </details>
 
 <details>
