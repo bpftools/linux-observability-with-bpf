@@ -70,11 +70,10 @@ sudo apt update
 sudo apt install build-essential git make libelf-dev clang strace tar bpfcc-tools linux-headers-$(uname -r) gcc-multilib
 ```
 
-**Kernel version**: make sure to have a recent kernel to run the examples. Most 18.04 are shipped with kernel 4.15 that doesn't work for all the examples. Upgrading options are left to the reader, we've been successful on aws by installing the `linux-image-5.0.0-1019-aws` package.
+**Note on Kernel version**: make sure to have a recent kernel to run the examples, a version `>=5.0.0` will do the job. Most Ubuntu `18.04` providers are shipping with the kernel `4.15` that doesn't work for most of the examples. Upgrading options are left to the reader, we've been successful on aws by installing the `linux-image-5.0.0-1019-aws` package.
 
-Then we need grab a copy of the source code of the current release.
-Since this assumes that you are running an updated Ubuntu 18.04 we can get the kernel
-source directly from the repo they provide.
+After dependencies, we need grab a copy of the kernel source code for the current release.
+Since this assumes that you are running an updated Ubuntu 18.04 we can get it directly from the repo they provide.
 
 ```
 cd /tmp
