@@ -1,23 +1,22 @@
 # Chapter 6: Packet filtering with Raw Sockets
 
-A full description of this example can be found in Chapter 6.
+- A full description of this example can be found in Chapter 6.
+- Please remember that the examples here are tested in the Vagrant machine. Please read more in [README.md](/README.md).
+- Make sure to change the example accordingly if you wish to build somewhere else, open an issue if you have problems doing so!
+- All the dependencies are already handled if you followed the instructions in the main [README.md](/README.md).
 
-If you follow this example from the book it will ask you to download kernel sources for `libbpf`
-and install the dependencies. However, since you are here you are following the examples
-in the Vagrant machine so all the dependencies are already handled if you followed the instructions in the main [README.md](/README.md).
-
-In the vagrant machine:
+In the machine:
 
 Enter into this example folder:
 
 ```bash
-cd /vagrant/code/chapter-6/packet-filtering-raw-sockets
+cd ~/linux-observability-with-bpf/code/chapter-6/packet-filtering-raw-sockets
 ```
 
 Compile the loader
 
 ```bash
-./build-loader.sh
+./build-loader.sh /kernel-src
 ```
 
 It will create a binary file named `loader-bin`
@@ -33,7 +32,7 @@ It will create a BPF ELF named `bpf-program.o`
 Execute the program using the loader:
 
 ```
-./loader-bin bpf_program.o 
+sudo ./loader-bin bpf_program.o 
 ```
 
 It will show something like this, ten results, one every second for ten seconds:

@@ -1,7 +1,7 @@
 # Chapter 2: Hello World
 
 - A full description of this example can be found in Chapter 2.
-- Please remember that the examples here assume that you setup the Vagrant machine.
+- Please remember that the examples here are tested in the Vagrant machine. Please read more in [README.md](/README.md).
 - Make sure to change the `Makefile` accordingly if you wish to build somewhere else, open an issue if you have problems doing so!
 - All the dependencies are already handled if you followed the instructions in the main [README.md](/README.md).
 
@@ -9,12 +9,12 @@
 
 ## Let's do it!
 
-In the vagrant machine:
+In the environment:
 
 Enter into this example folder:
 
 ```bash
-cd /vagrant/code/chapter-2/hello_world
+cd ~/linux-observability-with-bpf/code/chapter-2/hello_world
 ```
 
 Compile the program and the loader
@@ -33,7 +33,7 @@ Now you can execute the bpf program with root privileges and leave it running.
 
 The program is made in a way that everytime an `execve` syscall is executed it prints `Hello, BPF World!`.
 
-Now, open another terminal in the same Vagrant machine and issue a command that does an `execve`, for example `ls` does.
+Now, open another terminal in the same machine and issue a command that does an `execve`, for example `ls` does.
 
 
 ```bash

@@ -13,10 +13,101 @@ Examples can be slightly different in this repository because of that. The reaso
 If you don't want a Vagrant based environment, make sure you have: [bcc](https://github.com/iovisor/bcc/blob/master/INSTALL.md) and [clang](https://clang.llvm.org/)
 
 
-## Vagrant Environment setup
+## Environment setup
 
-We provide reproducible environment in the form of a Vagrantfile that installs all the needed to make the exampples work.
-tools.
+- Please expand the details of the environment you want to work on.
+- Remember that the examples have been tested on the Vagrant based environment primarily.
+- Feel free to open an issue or a PR if you want to help in making this better for everyone!
+
+<details>
+<summary>Fedora 30</summary>
+
+First, we need to install some build dependencies and all the tools needed for the examples:
+
+```bash
+sudo dnf install make glibc-devel.i686 elfutils-libelf-devel wget tar clang bcc strace kernel-devel -y
+```
+
+Then we need grab a copy of the source code of the current kernel.
+
+In our case the kernel runing can be verified with `uname`.
+
+```bash
+$ uname -r
+5.0.9-301.fc30.x86_64
+```
+
+Given that version, please notice the URL we fetch the sources from in the following command.
+Change it according to your version.
+
+```bash
+cd /tmp
+wget -c https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.0.9.tar.gz -O - | tar -xz
+```
+
+Now that we have the kernel source, we can move it to the `/kernel-src` folder.
+
+**NOTE THAT: All the examples** using kernel sources in this repo assume that the kernel sources are available there. In case you don't like it,
+make sure you do a search and replace!
+
+At this point we move the kernel sources and compile `libbpf`. Again please notice the `5.0.9` here and change accordingly.
+
+```
+sudo mv linux-5.0.9 /kernel-src
+cd /kernel-src/tools/lib/bpf
+sudo make && sudo make install prefix=/
+```
+
+</details>
+
+<details>
+<summary>Ubuntu 18.04</summary>
+
+First, we need to install some build dependencies and all the tools needed for the examples:
+
+```bash
+sudo apt update
+sudo apt install build-essential git make libelf-dev clang strace tar bpfcc-tools linux-headers-$(uname -r) gcc-multilib
+```
+
+**Note on Kernel version**: make sure to have a recent kernel to run the examples, a version `>=5.0.0` will do the job. Most Ubuntu `18.04` providers are shipping with the kernel `4.15` that doesn't work for most of the examples. Upgrading options are left to the reader, we've been successful on aws by installing the `linux-image-5.0.0-1019-aws` package.
+
+After dependencies, we need grab a copy of the kernel source code for the current release.
+Since this assumes that you are running an updated Ubuntu 18.04 we can get it directly from the repo they provide.
+
+```
+cd /tmp
+git clone --depth 1 git://kernel.ubuntu.com/ubuntu/ubuntu-bionic.git
+```
+
+Now that we have the kernel source, we can move it to the `/kernel-src` folder.
+
+**NOTE THAT: All the examples** using kernel sources in this repo assume that the kernel sources are available at `/kernel-src`. In case you don't like it,
+make sure you do a search and replace!
+
+
+At this point we move the kernel sources and compile `libbpf`.
+
+```
+sudo mv ubuntu-bionic /kernel-src
+cd /kernel-src/tools/lib/bpf
+sudo make && sudo make install prefix=/usr/local
+```
+
+Ubuntu doesn't have the library path that the makefile expects so we need to move our libraries
+to its library path now.
+
+```
+sudo mv /usr/local/lib64/libbpf.* /lib/x86_64-linux-gnu/
+```
+
+</details>
+
+<details>
+<summary>Vagrant (recommended)</summary>
+We provide reproducible environment in the form of a Vagrantfile that installs all the needed to make the examples work.
+
+The environment is based on Fedora 30.
 
 ### Install Vagrant
 
@@ -54,16 +145,20 @@ cd /kernel-src/tools/lib/bpf
 make && make install prefix=/
 ```
 
-Now that you are in the machine and have everything, you can `cd` into the `/vagrant` folder, you'll find this
-repository in that folder since it's **one-time synced** between the VM and your Computer.
+
+</details>
+
+
+Before going to the examples, it will be useful to have a copy of this repo in your environment.
 
 ```
-cd /vagrant
+git clone https://github.com/bpftools/linux-observability-with-bpf.git ~/linux-observability-with-bpf
 ```
 
+**IMPORTANT NOTE**: The examples assume that you clone the repo in your home folder `~/linux-observability-with-bpf`, if you didn't do
+please remember to change your commands!
 
-
-Now, you can follow the following code examples.
+Yay, at this point you have everything and can follow the following code examples.
 
 ## Code examples
 

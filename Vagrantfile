@@ -8,19 +8,16 @@ dnf install make glibc-devel.i686 elfutils-libelf-devel wget tar clang bcc strac
 SCRIPT
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  num_machines = 2
-  net_ip = "192.168.33.10"
-
-  config.vm.define "bpfbook" do |net|
-  config.vm.box = "fedora/30-cloud-base"
-  config.vm.box_version = "30.20190425.0"
-  net_index = 1
-  config.vm.hostname = "bpfbook"
-  config.vm.provider "virtualbox" do |vb|
-    vb.customize ["modifyvm", :id, "--memory", "1024"]
-  end
-  config.vm.network :private_network, ip: "#{net_ip}"
-  config.vm.provision :shell, inline: $bootstrap, :args => "#{net_ip}"
+	ipv4 = "192.168.33.10"
+	config.vm.define "bpfbook" do |fedora|
+		fedora.vm.box = "fedora/30-cloud-base"
+		fedora.vm.box_version = "30.20190425.0"
+		net_index = 1
+		fedora.vm.hostname = "bpfbook"
+		fedora.vm.provider "virtualbox" do |vb|
+			vb.customize ["modifyvm", :id, "--memory", "1024"]
+		end
+		fedora.vm.network :private_network, ip: "#{ipv4}"
+		fedora.vm.provision :shell, inline: $bootstrap, :args => "#{ipv4}"
+	end
 end
-end
-
