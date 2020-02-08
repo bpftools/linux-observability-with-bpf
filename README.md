@@ -142,7 +142,7 @@ At this point, we need to compile the `libbpf` library:
 
 ```
 cd /kernel-src/tools/lib/bpf
-make && make install prefix=/
+make && sudo make install prefix=/
 ```
 
 
