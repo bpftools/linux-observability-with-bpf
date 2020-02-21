@@ -9,7 +9,7 @@ bpf_source = """
 
 struct trace_t {
   int stack_id;
-}
+};
 
 BPF_HASH(cache, struct trace_t);
 BPF_STACK_TRACE(traces, 10000);
@@ -45,11 +45,11 @@ except KeyboardInterrupt:
 
 for trace, acc in sorted(cache.items(), key=lambda cache: cache[1].value):
   line = []
-  if trace.stack_id < 0 and trace.stack_id == -errno.EFAULT
+  if trace.stack_id < 0 and trace.stack_id == -errno.EFAULT:
     line = ['Unknown stack']
-  else
+  else:
     stack_trace = list(traces.walk(trace.stack_id))
-    for stack_address in reversed(stack_trace)
+    for stack_address in reversed(stack_trace):
       line.extend(bpf.sym(stack_address, program_pid))
   
   frame = b";".join(line).decode('utf-8', 'replace')
