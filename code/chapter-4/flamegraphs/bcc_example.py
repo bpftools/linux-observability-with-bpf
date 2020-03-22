@@ -39,7 +39,6 @@ int collect_stack_traces(struct bpf_perf_event_data *ctx) {
 }
 """
 
-print("loading eBPF program")
 program_pid = int(sys.argv[1])
 bpf_source = bpf_source.replace('PROGRAM_PID', str(program_pid))
 
@@ -51,7 +50,6 @@ bpf.attach_perf_event(ev_type=PerfType.SOFTWARE,
 
 exiting = 0
 try:
-    print("sampling for 300 seconds, Ctrl-C to interrupt")
     sleep(300)
 except KeyboardInterrupt:
     exiting = 1
@@ -75,5 +73,4 @@ for trace, acc in sorted(bpf['cache'].items(), key=lambda cache: cache[1].value)
     frame = ";".join(line)
     sys.stdout.write("%s %d\n" % (frame, acc.value))
     if exiting:
-        print("exiting")
         exit()
