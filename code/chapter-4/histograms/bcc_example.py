@@ -1,4 +1,5 @@
 from bcc import BPF
+from time import sleep
 
 bpf_source = """
 #include <uapi/linux/ptrace.h>
@@ -6,7 +7,7 @@ bpf_source = """
 BPF_HASH(cache, u64, u64);
 BPF_HISTOGRAM(histogram);
 
-int trace_bpf_prog_load_start(void ctx) {
+int trace_bpf_prog_load_start(void *ctx) {
   u64 pid = bpf_get_current_pid_tgid();
   u64 start_time_ns = bpf_ktime_get_ns();
   cache.update(&pid, &start_time_ns);
@@ -15,7 +16,7 @@ int trace_bpf_prog_load_start(void ctx) {
 """
 
 bpf_source += """
-int trace_bpf_prog_load_return(void ctx) {
+int trace_bpf_prog_load_return(void *ctx) {
   u64 *start_time_ns, delta;
   u64 pid = bpf_get_current_pid_tgid();
   start_time_ns = cache.lookup(&pid);
