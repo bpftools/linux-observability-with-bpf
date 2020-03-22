@@ -1,5 +1,13 @@
-from bcc import BPF
+import sys
+import signal
 from time import sleep
+
+from bcc import BPF
+
+
+def signal_ignore(signal, frame):
+    print()
+
 
 bpf_source = """
 #include <uapi/linux/ptrace.h>
@@ -29,13 +37,15 @@ int trace_bpf_prog_load_return(void *ctx) {
 }
 """
 
-bpf = BPF(text = bpf_source)
-bpf.attach_kprobe(event = "bpf_prog_load", fn_name = "trace_bpf_prog_load_start")
-bpf.attach_kretprobe(event = "bpf_prog_load", fn_name = "trace_bpf_prog_load_return")
+bpf = BPF(text=bpf_source)
+bpf.attach_kprobe(event="bpf_prog_load", fn_name="trace_bpf_prog_load_start")
+bpf.attach_kretprobe(event="bpf_prog_load",
+                     fn_name="trace_bpf_prog_load_return")
+
 
 try:
-  sleep(99999999)
+    sleep(300)
 except KeyboardInterrupt:
-  print()
+    signal.signal(signal.SIGINT, signal_ignore)
 
 bpf["histogram"].print_log2_hist("msecs")
