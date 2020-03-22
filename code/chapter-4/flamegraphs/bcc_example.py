@@ -1,7 +1,15 @@
-from bcc import BPF, PerfType, PerfSWConfig
-import sys
+#!/usr/bin/python
 import errno
+import signal
+import sys
 from time import sleep
+
+from bcc import BPF, PerfSWConfig, PerfType
+
+
+def signal_ignore(signal, frame):
+    print()
+
 
 bpf_source = """
 #include <uapi/linux/ptrace.h>
@@ -31,36 +39,41 @@ int collect_stack_traces(struct bpf_perf_event_data *ctx) {
 }
 """
 
+print("loading eBPF program")
 program_pid = int(sys.argv[1])
 bpf_source = bpf_source.replace('PROGRAM_PID', str(program_pid))
 
-bpf = BPF(text = bpf_source)
-bpf.attach_perf_event(ev_type = PerfType.SOFTWARE,
-                      ev_config = PerfSWConfig.CPU_CLOCK,
-                      fn_name = 'collect_stack_traces',
+bpf = BPF(text=bpf_source)
+bpf.attach_perf_event(ev_type=PerfType.SOFTWARE,
+                      ev_config=PerfSWConfig.CPU_CLOCK,
+                      fn_name='collect_stack_traces',
                       sample_period=1)
 
+exiting = 0
 try:
-  sleep(300)
+    print("sampling for 300 seconds, Ctrl-C to interrupt")
+    sleep(300)
 except KeyboardInterrupt:
-  signal.signal(signal.SIGINT, signal_ignore)
+    exiting = 1
+    signal.signal(signal.SIGINT, signal_ignore)
 
-fd = open('/tmp/main_perf.folded', 'w+')
-
+print("dumping the results")
 for trace, acc in sorted(bpf['cache'].items(), key=lambda cache: cache[1].value):
-  line = []
-  if trace.stack_id < 0 and trace.stack_id == -errno.EFAULT:
-    line = ['Unknown stack']
-  else:
-    stack_trace = list(bpf['traces'].walk(trace.stack_id))
-    for stack_address in reversed(stack_trace):
-      function_name = bpf.sym(stack_address, program_pid).decode('utf-8')
-      if function_name == '[unknown]':
-        continue
-      line.extend([function_name])
-  
-  if len(line) < 1: continue
-  frame = ";".join(line)
-  fd.write("%s %d\n" % (frame, acc.value))
+    line = []
+    if trace.stack_id < 0 and trace.stack_id == -errno.EFAULT:
+        line = ['Unknown stack']
+    else:
+        stack_trace = list(bpf['traces'].walk(trace.stack_id))
+        for stack_address in reversed(stack_trace):
+            function_name = bpf.sym(stack_address, program_pid).decode('utf-8')
+            if function_name == '[unknown]':
+                continue
+            line.extend([function_name])
 
-fd.close()
+    if len(line) < 1:
+        continue
+    frame = ";".join(line)
+    sys.stdout.write("%s %d\n" % (frame, acc.value))
+    if exiting:
+        print("exiting")
+        exit()
