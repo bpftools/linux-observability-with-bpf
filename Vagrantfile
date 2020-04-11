@@ -17,6 +17,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 		fedora.vm.provider "virtualbox" do |vb|
 			vb.customize ["modifyvm", :id, "--memory", "1024"]
 		end
+		fedora.vm.provider "libvirt" do |lv|
+			lv.memory = 1024
+		end
 		fedora.vm.network :private_network, ip: "#{ipv4}"
 		fedora.vm.provision :shell, inline: $bootstrap, :args => "#{ipv4}"
 	end
