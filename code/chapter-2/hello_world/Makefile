@@ -16,7 +16,7 @@ LOADINCLUDE += -I/kernel-src/tools/include
 LIBRARY_PATH = -L/usr/local/lib64
 BPFSO = -lbpf
 
-.PHONY: clean $(CLANG) bpfload build
+.PHONY: clean bpfload build
 
 clean:
 	rm -f *.o *.so $(EXECABLE)
