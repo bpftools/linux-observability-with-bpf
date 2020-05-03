@@ -1,3 +1,5 @@
 .vagrant/
 *.log
 kernel/
+code/chapter-2/hello_world/bpf_program.o
+code/chapter-2/hello_world/monitor-exec
