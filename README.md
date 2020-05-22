@@ -30,7 +30,7 @@ sudo dnf install make glibc-devel.i686 elfutils-libelf-devel wget tar clang bcc 
 
 Then we need grab a copy of the source code of the current kernel.
 
-In our case the kernel runing can be verified with `uname`.
+In our case the kernel running can be verified with `uname`.
 
 ```bash
 $ uname -r
@@ -61,13 +61,17 @@ sudo make && sudo make install prefix=/
 </details>
 
 <details>
-<summary>Ubuntu 18.04</summary>
+<summary>Ubuntu 18.04/20.04</summary>
 
 First, we need to install some build dependencies and all the tools needed for the examples:
 
 ```bash
 sudo apt update
+# Ubuntu 18.04
 sudo apt install build-essential git make libelf-dev clang strace tar bpfcc-tools linux-headers-$(uname -r) gcc-multilib
+
+# Ubuntu 20.04
+sudo apt install build-essential git make libelf-dev clang strace tar bpfcc-tools linux-headers-$(uname -r) gcc-multilib libreadline-dev binutils-dev  
 ```
 
 **Note on Kernel version**: make sure to have a recent kernel to run the examples, a version `>=5.0.0` will do the job. Most Ubuntu `18.04` providers are shipping with the kernel `4.15` that doesn't work for most of the examples. Upgrading options are left to the reader, we've been successful on aws by installing the `linux-image-5.0.0-1019-aws` package.
@@ -94,7 +98,7 @@ cd /kernel-src/tools/lib/bpf
 sudo make && sudo make install prefix=/usr/local
 ```
 
-Ubuntu doesn't have the library path that the makefile expects so we need to move our libraries
+Ubuntu 18.04 doesn't have the library path that the makefile expects so we need to move our libraries
 to its library path now.
 
 ```
