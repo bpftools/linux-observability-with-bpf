@@ -71,7 +71,7 @@ sudo apt update
 sudo apt install build-essential git make libelf-dev clang strace tar bpfcc-tools linux-headers-$(uname -r) gcc-multilib
 
 # Ubuntu 20.04
-sudo apt install build-essential git make libelf-dev clang strace tar bpfcc-tools linux-headers-$(uname -r) gcc-multilib libreadline-dev binutils-dev  
+sudo apt install build-essential git make libelf-dev clang strace tar bpfcc-tools linux-headers-$(uname -r) gcc-multilib libreadline-dev binutils-dev bison flex  
 ```
 
 **Note on Kernel version**: make sure to have a recent kernel to run the examples, a version `>=5.0.0` will do the job. Most Ubuntu `18.04` providers are shipping with the kernel `4.15` that doesn't work for most of the examples. Upgrading options are left to the reader, we've been successful on aws by installing the `linux-image-5.0.0-1019-aws` package.
