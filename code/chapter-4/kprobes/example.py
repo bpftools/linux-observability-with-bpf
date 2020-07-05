@@ -6,7 +6,7 @@ bpf_source = """
 int do_sys_execve(struct pt_regs *ctx) {
   char comm[16];
   bpf_get_current_comm(&comm, sizeof(comm));
-  bpf_trace_printk("executing program: %s", comm);
+  bpf_trace_printk("executing program: %s\\n", comm);
   return 0;
 }
 """
