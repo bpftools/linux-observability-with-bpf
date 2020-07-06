@@ -31,7 +31,7 @@ build: ${BPFCODE.c} ${BPFLOADER}
 	$(CLANG) -O2 -target bpf -c $(READBPFCODE:=.c) $(CCINCLUDE) -o ${READBPFCODE:=.o} && \
 		$(CLANG) -O2 -target bpf -c $(PINBPFCODE:=.c) $(CCINCLUDE) -o ${PINBPFCODE:=.o}
 
-bpfload: build
+bpfpin: build
 	clang -o $(PINEXECABLE) -lelf $(LOADINCLUDE) $(LIBRARY_PATH) $(BPFSO) \
         $(BPFLOADER) pin_loader.c && \
         clang -o $(READEXECABLE) -lelf $(LOADINCLUDE) $(LIBRARY_PATH) $(BPFSO) \
