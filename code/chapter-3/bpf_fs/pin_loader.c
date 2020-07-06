@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 int main(int argc, char **argv) {
-  if (load_bpf_file("map_pinning_fetch.o") != 0) {
+  if (load_bpf_file("map_pinning_save.o") != 0) {
     printf("The kernel didn't load the BPF program\n");
     return -1;
   }
