@@ -9,5 +9,5 @@ int trace_go_main(struct pt_regs *ctx) {
 """
 
 bpf = BPF(text = bpf_source)
-bpf.attach_uprobe(name = "hello-bpf", sym = "main.main", fn_name = "trace_go_main")
+bpf.attach_uprobe(name = "./hello-bpf", sym = "main.main", fn_name = "trace_go_main")
 bpf.trace_print()
