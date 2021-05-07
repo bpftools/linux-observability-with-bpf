@@ -1,5 +1,33 @@
 # Chapter 2: Hello World
 
+
+## Set the aliyun env
+
+```bash
+
+
+   yum update kernel
+   yum install kernel-source 
+   yum install kernel-tools -y
+   yum install libbpf
+   yum install bpftool
+   yum install kernel-devel kernel-headers
+   yum install llvm
+   yum install binutils gcc make patch libgomp glibc-headers glibc-devel kernel-headers kernel-devel -y
+   yum install elfutils-libelf-devel
+   yum install bcc
+   yum install bcc-tools
+   yum install python36
+
+   wget http://mirrors.edge.kernel.org/pub/linux/kernel/v4.x/linux-4.18.tar.gz
+   tar -xf linux-4.18.tar.gz 
+   cp -r linux-4.18/* /usr/src/kernels/4.18.0-240.22.1.el8_3.x86_64/
+
+   ln -s /usr/lib64/libbpf.so.0 /usr/lib64/libbpf.so
+
+```
+
+
 - A full description of this example can be found in Chapter 2.
 - Please remember that the examples here are tested in the Vagrant machine. Please read more in [README.md](/README.md).
 - Make sure to change the `Makefile` accordingly if you wish to build somewhere else, open an issue if you have problems doing so!
