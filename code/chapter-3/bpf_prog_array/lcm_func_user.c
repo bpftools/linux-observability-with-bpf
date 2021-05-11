@@ -14,6 +14,7 @@ int main(int argc, char **argv) {
 		BPF_MOV64_IMM(BPF_REG_0, 0),
 		BPF_EXIT_INSN(),
 	};
+	//https://github.com/torvalds/linux/blob/5bfc75d92efd494db37f5c4c173d3639d4772966/samples/bpf/sock_example.c
         prog_fd = bpf_load_program(BPF_PROG_TYPE_TRACEPOINT, prog, sizeof(prog) / sizeof(struct bpf_insn), "GPL", 0, bpf_log_buf, BPF_LOG_BUF_SIZE);
  if (prog_fd < 0) {
 printf("failed to load prog '%s'\n", strerror(errno));
