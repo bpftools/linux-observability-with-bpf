@@ -7,7 +7,7 @@
 #include "bpf_util.h"
 #include "libbpf.h"
 
-static const char *file_path = "/sys/fs/bpf/my_array";
+static const char *file_path = "/sys/fs/bpf/lcm/my_array";
 
 int main(int argc, char **argv) {
   int key, value, fd, added, pinned;
