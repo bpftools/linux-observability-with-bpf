@@ -78,4 +78,10 @@ Todo
 add link to Daniel’s TC example of using Unix-domain sockets.
 
 ```
-   
+
+	新发现：
+            可以用bpftool prog load 到内核时，通过指定pin好的map来替换内核程序初始化的映射名！
+            例如：
+                bpftool prog load lcm_map_pinning_save_kern.o /sys/fs/bpf/lcm_map_pinning_save  map name lcmdataset /sys/fs/bpf/lcm/my_dataset 
+  
+未来可以看看bpftool源码研究下。 
