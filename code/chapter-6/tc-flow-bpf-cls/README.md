@@ -17,10 +17,14 @@ cd ~/linux-observability-with-bpf/code/chapter-6/tc-flow-bpf-cls
 Build the program
 
 ```bash
-./build.sh
+cp ./* /root/lcm/linux-source/linux-4.18/samples/bpf
+
+cd /root/lcm/linux-source/linux-4.18/samples/bpf
+make
+
 ```
 
-It will create an ELF file named `classifier.o`
+It will create an ELF file named `lcm_classifier_kern.o`
 
 Now, since this example is using Traffic Control as a loader, we don't need to build a loader
 ourselves but we just use the `load.sh` script that uses `tc` to load the program on an interface
@@ -32,14 +36,17 @@ You can use it like this on the loopback (`eth0`), or any other interface (`lo`,
 sudo ./load.sh eth0
 ```
 
-Since the program `classifier.c` writes with `bpf_trace_printk` it will dump the output to `/sys/kernel/debug/tracing/trace_pipe`.
+Since the program `lcm_classifier_kern.c` writes with `bpf_trace_printk` it will dump the output to `/sys/kernel/debug/tracing/trace_pipe`.
 
 The classifier is written in a way that everytime an HTTP packet goes trough that interface it will print `Yes! It is HTTP!`.
 
 If you now do an http request to any HTTP server, e.g
 
 ```bash
-curl http://bpf.sh
+python3 -m http.server
+
+#use another mechine
+curl http://eth0Ip:8000
 ```
 
 It will show:

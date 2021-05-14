@@ -61,7 +61,8 @@ static inline int classification(struct __sk_buff *skb) {
   }
 
   h_proto = eth->h_proto;
-
+  
+  trace_printk("Test!\n");
   if (h_proto == bpf_htons(ETH_P_IP)) {
     if (is_http(skb, nh_off) == 1) {
       trace_printk("Yes! It is HTTP!\n");
