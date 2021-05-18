@@ -28,7 +28,7 @@ int myprogram(struct xdp_md *ctx) {
     *cnt += 1;
   }
 
-  if (ip->protocol == IPPROTO_TCP) {
+  if (ip->protocol == IPPROTO_ICMP) {
     return XDP_DROP;
   }
 

@@ -22,7 +22,11 @@ Our loader, `loader.py` can be invoked with:
 
 Nota Bene: make sure to modify the loader `device` variable based on your needs. In the Vagrant environment, we have `eth0` and `eth1`. We used `eth1` because we are dropping TCP packets and we are connected to the instance trough TCP!
 
+Note lcm: If your driver just support generic XDP mode,should use flag  
+
 ```
+flag = 0                                                                                              flag |= 2 << 0 
+
 sudo ./loader.py
 ```
 
