@@ -28,4 +28,4 @@ while 1:
         print("Removing filter from device")
         break
 
-b.remove_xdp(device, 0)
+b.remove_xdp(device, flag)
