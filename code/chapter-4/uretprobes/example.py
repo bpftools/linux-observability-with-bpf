@@ -19,7 +19,7 @@ int print_duration(struct pt_regs *ctx) {
     return 0;
   }
   u64 duration_ns = bpf_ktime_get_ns() - *start_time_ns;
-  bpf_trace_printk("Function call duration: %d\\n", duration_ns);
+  bpf_trace_printk("Function call duration: %llu\\n", duration_ns);
   return 0;
 }
 """
