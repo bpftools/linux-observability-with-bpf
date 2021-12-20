@@ -28,7 +28,7 @@ It will create a BPF ELF named `bpf-program.o` and a Loader named `monitor-exec`
 Now you can execute the bpf program with root privileges and leave it running.
 
 ```
-# ./monitor-exec
+# sudo ./monitor-exec
 ```
 
 The program is made in a way that everytime an `execve` syscall is executed it prints `Hello, BPF World!`.
