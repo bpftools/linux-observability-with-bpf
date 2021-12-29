@@ -1,15 +1,19 @@
 from bcc import BPF
 
 bpf_source = """
+#include <linux/sched.h>
 #include <uapi/linux/ptrace.h>
+
+struct data_t {
+    char comm[TASK_COMM_LEN];
+};
 
 BPF_PERF_OUTPUT(events);
 
-int do_sys_execve(struct pt_regs *ctx, void filename, void argv, void envp) {
-  char comm[16];
-  bpf_get_current_comm(&comm, sizeof(comm));
-
-  events.perf_submit(ctx, &comm, sizeof(comm));
+int do_sys_execve(struct pt_regs *ctx) {
+  struct data_t data = {};
+  bpf_get_current_comm(&data.comm, sizeof(data.comm));
+  events.perf_submit(ctx, &data, sizeof(data));
   return 0;
 }
 """
@@ -22,8 +26,8 @@ from collections import Counter
 aggregates = Counter()
 
 def aggregate_programs(cpu, data, size):
-  comm = bpf["events"].event(data)
-  aggregates[comm] += 1
+  event = bpf["events"].event(data)
+  aggregates[event.comm] += 1
 
 bpf["events"].open_perf_buffer(aggregate_programs)
 while True:
