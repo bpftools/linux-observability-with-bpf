@@ -1,6 +1,26 @@
 <p><img align="right" src="/img/owl.png" width="150px"/></p>
 <p></p>
 
+# Important note for readers (Jan 30th 2022)
+
+This repository is now archived, this book was published in 2019 and written in 2018. We have been trying to keep the repository up-to-date until now but eBPF had a tremendous evolution in the past 3 years. This does not mean that reading the book is a complete waste of your time now, many concepts are always the same: like how the bpf syscall works, the instruction set and things like how tracepoints, kprobes, uprobes, xdp and traffic control works. However, at this point, just updating the examples here is not enough anymore and many areas of the book would need to be rewritten to fit the new concepts, tools, libraries and the ecosystem around eBPF. A second edition is not yet planned (will update here if it ever happens).
+
+We want to say **thank you** to all the readers and the [amazing people](https://github.com/bpftools/linux-observability-with-bpf/pulls?q=is%3Apr+is%3Aclosed) who helped updating the examples with their findings.
+
+## What should I do then?
+
+If you are new to eBPF and don't know where to start good news is that today there is an amazing community that didn't exist in 2018!
+
+Here you go! There are just two links you will really need.
+
+- [eBPF.io website](https://ebpf.io/): A website containing useful documentation, blog post, conference talks and links to many resources
+- [The eBPF and Cilium Slack](https://ebpf.io/slack): an amazing community of people around eBPF, you'll be welcome there. 
+
+What are you waiting for? Go meet your new friends!
+
+
+From now on, the original text of this readme.
+
 # Linux Observability with BPF code examples
 
 This is the companion code repo for the book [Linux Observability with BPF](https://bit.ly/bpf-safari).
